@@ -1,0 +1,11 @@
+* {
+    margin: 0;
+}
+
+button {
+    padding: '2rem'
+}
+
+button.secondary {
+    background: transparent;
+}
