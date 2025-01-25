@@ -1,11 +1,11 @@
 * {
-    margin: 0;
+  margin: 0;
 }
 
 button {
-    padding: '2rem'
+  padding: "2rem";
 }
 
 button.secondary {
-    background: transparent;
+  background: transparent;
 }
