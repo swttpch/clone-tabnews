@@ -2,8 +2,10 @@ import database from "infra/database.js";
 import { ValidationError } from "infra/errors.js";
 
 async function create(userPayload) {
-  await validateUniqueEmail(userPayload.email);
-  await validateUniqueUsername(userPayload.username);
+  await Promise.all([
+    validateUniqueEmail(userPayload.email),
+    validateUniqueUsername(userPayload.username),
+  ]);
 
   const newUser = await runInsertQuery(userPayload);
   return newUser;
