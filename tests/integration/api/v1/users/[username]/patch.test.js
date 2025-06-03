@@ -310,7 +310,6 @@ describe("GET /api/v1/users/[username]", () => {
       );
 
       const userInDatabase = await user.findOneByUsername("newpassword1");
-      console.log(userInDatabase);
       const correctPasswordMatch = await password.compare(
         "newpassword2",
         userInDatabase.password,
