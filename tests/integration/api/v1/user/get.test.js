@@ -149,6 +149,19 @@ describe("GET /api/v1/user", () => {
         action: "Verifique se este usuario esta logado e tente novamente.",
         status_code: 401,
       });
+
+      // Set-Cookie assertions
+      const parsedSetCookie = setCookieParser(response, {
+        map: true,
+      });
+
+      expect(parsedSetCookie.session_id).toEqual({
+        name: "session_id",
+        value: "invalid",
+        maxAge: -1,
+        path: "/",
+        httpOnly: true,
+      });
     });
     test("With expired session", async () => {
       jest.useFakeTimers({
@@ -178,6 +191,19 @@ describe("GET /api/v1/user", () => {
         message: "Usuario nao possui sessao ativa.",
         action: "Verifique se este usuario esta logado e tente novamente.",
         status_code: 401,
+      });
+
+      // Set-Cookie assertions
+      const parsedSetCookie = setCookieParser(response, {
+        map: true,
+      });
+
+      expect(parsedSetCookie.session_id).toEqual({
+        name: "session_id",
+        value: "invalid",
+        maxAge: -1,
+        path: "/",
+        httpOnly: true,
       });
     });
   });
